@@ -1,5 +1,6 @@
 # Exercise: Mini App Sprint #
 > This was assigned to me when attending Hack Reactor as a student.
+
 In this 4-day sprint, you will build four "mini apps" completely from scratch. Building small apps from scratch is something that you will be asked to do in every technical interview during your job search. Mastering these concepts is essential to landing a job.
 
 It is __VERY IMPORTANT that you start from scratch__ on each challenge and that you __DO NOT copy code__ from a previous challenges, even if some aspects of the next challenge appear to be similar. Why? Read on:
