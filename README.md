@@ -21,7 +21,7 @@ Before you begin a challenge, it is recommended that you **read the hint titles*
 A hint that addresses a specific issue is only included in the challenge where it first becomes relevant. If you don't find a hint that meets your needs in the current challenge's hint file, be sure to also check prior hints.
 
 ## Challenge 1: Tic Tac Toe ##
-[Build a Tic Tac Toe game](#Challenge:-Tic-Tac-Toe)
+[Build a Tic Tac Toe game](#Challenge: Tic-Tac-Toe)
 
 ## Challenge 2: CSV Report Generator ## 
 [Build a CSV Report Generator]()
