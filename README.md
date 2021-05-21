@@ -24,7 +24,7 @@ A hint that addresses a specific issue is only included in the challenge where i
 [Build a Tic Tac Toe game](#challenge-tic-tac-toe)
 
 ## Challenge 2: CSV Report Generator ## 
-[Build a CSV Report Generator]()
+[Build a CSV Report Generator](#challenge-csv-report-generator)
 
 ## Challenge 3: Multistep Checkout Experience ## 
 [Build a Multistep Checkout Experience]()
@@ -42,7 +42,7 @@ The challenges below are offered as bonus to really stretch the limits of your s
 [Build a Battleship game]()
 
 # Challenge: Tic Tac Toe #
-## Basic Requirements ##
+### Basic Requirements ###
 Starting from a blank __`index.html`__ and blank __`app.js`__ file, build a single-page app for a simple Tic Tac Toe game, where:
   * the first move always starts with player X
   * the app detects a win or tie and displays an appropriate message
@@ -59,6 +59,38 @@ MVC frameworks help you separate and manage the concerns associated with user in
 If you get stuck or are not sure how to proceed:
    * you may look at the [hints](#hints-tic-tac-toe) file for this challenge to help you along.
    * you may substitute the use of native DOM methods with jQuery.
+
+# Challenge: CSV Report Generator #
+### Basic Requirements ###
+Use Express and ]Express middleware, if needed](https://expressjs.com/en/resources/middleware.html), to build a client-server app that generates CSV reports from JSON data.
+
+The JSON->CSV conversion specification is:
+```
+The server must flatten the JSON hierarchy, mapping each item/object in the JSON to a single line of CSV report (see included sample output), where the keys of the JSON objects will be the columns of the CSV report.
+You may assume the JSON data has a regular structure and hierarchy (see included sample file). In other words, all sibling records at a particular level of the hierarchy will have the same set of properties, but child objects might not contain the same properties. In all cases, every property you encounter must be present in the final CSV output.
+You may also assume that child records in the JSON will always be in a property called `children`.
+```
+  * Use Express to serve up an __`index.html`__ file and its associated assets
+  * The client app should be able to submit JSON data to the server, receive a response containing a CSV-formatted result (the way this is done will vary depending on where you are in the challenge).
+  * Implement all the report generation logic on the server. Do not use any external libraries to convert the data (such as via npm). You may use jQuery on the client and middleware like BodyParser on the server.
+
+Build your Express app inside __`server.js`__ and your client app inside the client folder. Don't forget to create a __`package.json`__ to store your project's dependencies.
+
+Initially, submission of the JSON data (from the client to server) should be done using an HTML __`form`__ with a single __`textarea`__ input field (for the entire JSON text) and a submit button. When the user clicks __`submit`__, POST the form data to the server. The form submission process should use the default browser action/behavior. __DO NOT use jQuery/AJAX functions in the submission process.__
+
+The response from the server should contain the CSV report along with the form so the user can keep submitting indefinitely, without having to go back to the "form page". __DO NOT USE jQuery/AJAX.__ You may use the supplied examples of JSON and CSV for testing and verification.
+
+Now that you have basic client/server submission working, refactor your form to use a file picker instead of a textarea. Continue to use the browser's default action. __DO NOT USE jQuery/AJAX.__
+
+Next, refactor to a single page application by using jQuery/AJAX to submit your JSON file to the server using AJAX. Note: a single page app means that once the page loads, no user-generated actions on the page may cause the entire page to reload. You will know the page is reloading if you see a change in your URL. You must prevent this behavior from occurring.
+
+Lastly, add a link to download the most recently created CSV report. You can choose to make this a server-based or client-based action.
+
+You are allowed to use jQuery to manipulate the DOM and handle any DOM events. You may use jQuery/Ajax only when you get to the step in the basic requirements that asks you to do so. For ease of development, be sure to use __`nodemon`__ to watch for changes in your project. Additionally, no CSS styling is necessary. Use the browser's default styling for all elements on your page.
+
+Use the coding best practices you learned previously to ensure a clear separation of concerns with well-defined interfaces.
+
+If you get stuck or are not sure how to proceed, you may look at the [hints file](#hints-csv-report-generator) for this challenge to help you along.
 
 # Hints: Tic Tac Toe #
 ## Topics: ##
@@ -104,3 +136,68 @@ Your goal is to use native DOM methods, but if you are struggling with those met
   * Don't rely on the DOM to tell you if a square is occupied. Rather, use an object to track which player is where and ask that object if the next play is possible (the next play is being considered each time a click event fires on one of the squares). When you attempt to make a play, the function should report if the play was allowed.
   * Don't modify the player turn inside the event handler. Rather, store this state in an object that encapsulates state and behavior (toggling player turn) and invoke that function before switching player turns. Use the information from the previous step to determine the appropriate course of action.
   * Don't manipulate the DOM inside the event handler. Instead, write a function that places an X or O at a specific location and call that function from the event handler if the play is allowed. Obtain the appropriate value (X vs. O) from the object that is tracking player turns.
+
+# Hints: CSV Report Generator #
+## Topics: ##
+The titles for each hint topic is listed below. Before you start the challenge, review this list of hint titles so that if you get stuck, you know what hints are available to you.
+  * Starting a Node Project: __`package.json`__
+  * Serving up __`index.html`__ and Assets
+  * HTML Forms
+  * Submitting Form Data using the Default Action
+  * Server Responses based on Form Submission
+  * Submitting Data via AJAX
+  * Preventing Page Reload
+  * Receiving Data as a Result of an AJAX Request
+
+If you are looking at these hints, it means you are struggling to meet the basic requirements. Below is a process you can follow to achieve the goals of the basic requirements. The hints are organized in a way that lets you ignore hints not related to your current step.
+
+### Starting a Node Project: package.json ###
+Run __`npm init`__ to create a __`package.json`__ file. You should create a __`package.json`__ for almost every project you work.
+
+Then install Express using: __`npm install express`__. This automatically adds Express to the dependencies list in your __`package.json`__ file.
+
+[See ExpressJS docs](https://expressjs.com/en/starter/installing.html)
+
+### Serving up `index.html` and Assets ###
+Inside your server file, you can simply point express to your __`client`__ folder, and it will automatically start serving up those files. The files in this folder are typically called static assets. It is a convention for this folder to be named __`public`__ in your project, but express doesn't care which name you use.
+
+__`app.use(express.static('client')`__
+
+By default, Express will look for a file called __`index.html`__ and serve that file whenever you browse to the root (/) route.
+
+### HTML Forms ###
+The minimal HTML form elements are __`<form>`__ with __`<input type="submit" value="Submit">`__ button. Beyond this minimum, you can add any other input elements as needed. Once submit is clicked, the browser's default action is to perform a get operation using the serialized form data.
+
+### Submitting Form Data using the Default Action ###
+If you have configured your __`<form>`__ to have a method and action attribute, when submit is clicked, the browser will automatically submit the form data to the server at the specified url using the specified method. AJAX is not necessary. Typically the method is configured as __`POST`__ and the action is set to whatever route is configured in your express server to handle the report submission.
+
+For example:
+```
+Express Route: `app.post('/upload_json', (req, res) => { ... })`
+HTML Form: `<form method="POST" action="/upload_json"></form>`
+```
+
+### Server Responses based on Form Submission ###
+The server must always respond to incoming HTTP requests and a POST request is no different. Upon processing the JSON Data, the server can respond with another page that contains both the form and the CSV report. This will require you to dynamically insert the result of the data processing step into the HTML of the response. This is exactly the same idea as "templates" (that you used on the client during various sprints), except that the template is rendered on the server before or as a part of __`res.end()`__.
+
+### Submitting Data via AJAX ###
+In your client code, you can initiate an AJAX request to a URL on your server. The URL and METHOD used in the AJAX call must match what is defined in your express server. The data you will submit should come from the __`textarea`__. The AJAX request is typicall initiated as part of the submit event (see next hint).
+
+For example:
+```
+Express Route: `app.post('/upload_json', (req, res) => { ... })`
+AJAX Method: `$.ajax({method: 'POST', url: '/upload_json', ... })`
+```
+Note: In the process of refactoring to AJAX, the default browser action is likely still triggered, which is causing the page to refresh. Be sure to disable this. If you are unclear on how to do so, read the next hint.
+
+### Preventing Page Reload ###
+To prevent the default action of a browser for HTML form submission, you can add an event handler to the form submit event and ask the browser to prevent its default operation. This is most easily accomplished via jQuery:
+```
+$('form').on('submit', function(e){
+  e.preventDefault();
+  // ... more event handler code here
+});
+```
+
+### Receiving Data as a Result of an AJAX Request ###
+When the server is done processing, the function __`response.send`__ should be invoked with the result of that process. This is done from your within your Express route handler. Whatever the server responds with is what is supplied to the success callback of the AJAX request in the browser. You can then use this result to convert into HTML (using a template) and then inserting the HTML into the DOM.
