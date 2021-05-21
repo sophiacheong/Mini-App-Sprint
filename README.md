@@ -23,7 +23,7 @@ A hint that addresses a specific issue is only included in the challenge where i
 ### Challenge 1: Tic Tac Toe ###
 [Build a Tic Tac Toe game](#challenge-tic-tac-toe)
 
-## Challenge 2: CSV Report Generator ###
+### Challenge 2: CSV Report Generator ###
 [Build a CSV Report Generator](#challenge-csv-report-generator)
 
 ### Challenge 3: Multistep Checkout Experience ###
