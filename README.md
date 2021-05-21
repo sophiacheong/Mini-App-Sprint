@@ -36,10 +36,10 @@ A hint that addresses a specific issue is only included in the challenge where i
 The challenges below are offered as bonus to really stretch the limits of your skills and thinking. Each challenge is progressively more difficult and offers fewer hints and guidelines.
 
 ## BONUS Challenge: Checkers ##
-[Build a Checkers game]()
+[Build a Checkers game](#challenge-checkers)
 
 ## BONUS Challenge: Battleship ##
-[Build a Battleship game]()
+[Build a Battleship game](#challenge-battleship)
 
 # Challenge: Tic Tac Toe #
 ### Basic Requirements ###
@@ -137,6 +137,39 @@ For ease of development, be sure to set Webpack to watch for changes in any of t
 Use the coding best practices you learned previously to ensure a clear separation of concerns with well-defined interfaces.
 
 If you get stuck or are not sure how to proceed, you may look at the [hints file](#hints-connect-four) for this challenge to help you along.
+
+# Challenge: Checkers #
+### Basic Requirements ###
+Build a single-page app implementation of Checkers using Express and React.
+  * Use Express to serve up an __`index.html`__ file and its associated assets
+  * Build your UI using ReactJS and pre-compile your views using Babel
+  * Implement all the game logic in the client code
+
+To satisfy the basic requirements of this challenge, simplify gameplay by allowing only single forward jumps. Detect when no more jumps can occur and declare a winner or tie. Write tests to verify your win/tie detection logic.
+
+Apply a ___minimal___ amount of CSS styling so that your board ___resembles___ a Checkers board. Do not spend any significant amount of time (30 min max) on styling: aim for resemblance, not similarity.
+
+Follow all the best practices you've learned in the prior challenges in this challenge too.
+
+No hints are provided for this challenge. Make any assumptions you feel are necessary to move forward.
+
+# Challenge: Battleship #
+Expect to be challenged! This is a bonus exercise that is meant to really push the limits of your abilities.
+
+Build a 1-2 player Battleship game with the following requirements:
+  * Build the UI using ReactJS
+  * Serve the app from an Express server
+  * Keep user's high scores in a database and have a leaderboard
+  * Implement the game logic (for any single game) in the React client
+  * Implement the overall game management logic on the server
+  * Track progress on a game and allow it to be restarted later
+  * Use ES6 and deliver everything to the front-end using Webpack
+  * Deploy to Heroku (use Webpack-dev for development and Webpack for your Heroku deployment)
+  * BONUS: support multiple simultaneous gameplays
+
+Remember to use coding best practices both on the server and client.
+
+No hints are provided for this challenge. Make any assumptions you feel are necessary to move forward.
 
 
 # Hints: Tic Tac Toe #
