@@ -30,7 +30,7 @@ A hint that addresses a specific issue is only included in the challenge where i
 [Build a Multistep Checkout Experience](#challenge-multistep-checkout-experience)
 
 ## Challenge 4: Connect Four ## 
-[Build a Connect Four game]()
+[Build a Connect Four game](#challenge-connect-four)
 
 # BONUS Challenges #
 The challenges below are offered as bonus to really stretch the limits of your skills and thinking. Each challenge is progressively more difficult and offers fewer hints and guidelines.
@@ -117,6 +117,27 @@ Every run through the checkout process (each time __`Checkout`__ is clicked) cre
 Use the coding best practices you learned previously to ensure a clear separation of concerns with well-defined interfaces.
 
 If you get stuck or are not sure how to proceed, you may look at the [hints file](#hints-multistep-checkout-experience) for this challenge to help you along.
+
+
+# Challenge: Connect Four #
+### Basic Requirements ###
+Build a single-page app implementation of the game Connect Four. You should:
+  * Use ReactJS for all views and bundle with Webpack
+  * Use Express to serve your app and handle API requests
+  * Implement all the game logic in the client code
+
+Build your Express app inside __`server.js`__ and your client app inside the client folder. Separate your React components into their own files and configure __`webpack-dev`__ to load those components into your client. For help configuring Webpack, you may look at the [hints file](#hints-connect-four).
+
+To satisfy the basic requirements of this challenge, you must detect a win or tie and display an appropriate message. Refreshing the page should restart the game. Write at least four tests (one test for each of horizontal, vertical, diagonal wins and one for ties) to verify your end-of-game detection logic. You may choose to write your tests to run either with node or within the browser.
+
+Apply a ___minimal___ amount of CSS styling so that your board resembles a Connect Four board. Do not spend any significant amount of time (30 min max) on styling: aim for resemblance, not similarity.
+
+For ease of development, be sure to set Webpack to watch for changes in any of the files it resolves via its entry point, __`app.js`__, so that it recompiles those changes immediately. Additionally, be sure to use __`nodemon`__ to watch for changes in __`server.js`__.
+
+Use the coding best practices you learned previously to ensure a clear separation of concerns with well-defined interfaces.
+
+If you get stuck or are not sure how to proceed, you may look at the [hints file](#hints-connect-four) for this challenge to help you along.
+
 
 # Hints: Tic Tac Toe #
 ## Topics: ##
@@ -288,3 +309,134 @@ You can figure out the load order by looking at the dependencies for each js fil
 <script src="app.js"></script>
 ```
 
+# Hints: Connect Four #
+## Topics: ##
+The titles for each hint topic are listed below. Before you start the challenge, review this list of hint titles so that if you get stuck, you know what hints are available to you.
+  * Installing and Running Webpack
+  * Creating a board
+
+If you are looking at these hints, it means you are struggling to meet the basic requirements. Below is a process you can follow to achieve the goals of the basic requirements. The hints are organized in a way that lets you ignore hints not related to your current step.
+
+### Installing and Running Webpack ###
+First, make sure to have your project's file structure set up as follows:
+```
+    your-project
+        -> client
+            -> dist
+                -> index.html
+            -> src
+                -> components
+                    -> Component1.jsx
+                    -> Component2.jsx
+                    -> Component3.jsx
+                -> index.jsx
+```
+
+P.S. Note that tools like Webpack are constantly changing. When major changes are made, existing configuration and setup may have to be updated for the tool to function properly. The following instructions had to be updated to accommodate the Babel 6.x to Babel 7.x update. This is why using the docs is so important, and why following tutorials can sometimes be a detriment (as this hint was when the Babel update was still fresh).
+
+Next, you'll need to install Webpack into your project:
+```
+    npm install webpack --save-dev
+```
+
+You're also going to need to install Webpack-CLI (Webpack's Command Line Interface):
+```
+    npm install webpack-cli --save-dev
+```
+
+Next, you'll need a script to easily run your Webpack development server from the command line. Let's add one to our __`package.json`__:
+```
+    "scripts": {
+      "react-dev": "webpack -d --watch"
+    }
+```
+
+React components are mostly written in ES6. Since the browser can't understand these files in their raw form, you need to transpile their code back down to ES5. Webpack actually can't do this by itself, however, you can configure Webpack with some 'loaders' to do some of the heavy lifting for you. Webpack loaders are essentially tools that take some code as input, conduct a transformation, and produce the transformed result as output.
+
+The loader you'll need to use is called __`babel-loader`__, which uses our good friend Babel to do it's job. To use Babel, it must be configured with some presets. First, install __`babel-loader`__ and its dependencies:
+```
+    npm install babel-loader @babel/core @babel/preset-env @babel/preset-react --save-dev
+```
+
+Next, to configure Webpack, create a configuration file (also in your project's root directory) called __`webpack.config.js`__ with the following contents:
+```
+    module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.jsx$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader'
+            }
+          }
+        ]
+      }
+    };
+```
+
+The above is the simplest form of a __`webpack.config.js`__ file. For every file with the __`.jsx`__ extension, Webpack will run each file's code through __`babel-loader`__ to transpile ES6 down to ES5.
+
+Though you now have your base configuration set up, there are a few finishing touches to add. You'll need to specify an entry point for Webpack to begin looking for files to transpile, and an output path for Webpack to save the bundled up transpiled code. Simply add two properties, __`entry`__ and __`output`__, to your __`webpack.config.js`__ file as follows:
+```
+    module.exports = {
+      entry: __dirname + '/client/src/index.jsx',
+      module: {
+        rules: [
+          {
+            test: [/\.jsx$/],
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-react', '@babel/preset-env']
+              }
+            }
+          }
+        ]
+      },
+       output: {
+        filename: 'bundle.js',
+        path: __dirname + '/client/dist'
+      }
+    };
+```
+
+Finally, start your React development server by running the following command on the command line:
+```
+    npm run react-dev
+```
+
+and you should see the transpiled version of your code, __`bundle.js`__ appear in the __`/dist`__ directory!
+
+### Creating a board ###
+When creating a board, it is recommended that you encode each square's x-y coordinate into the html using attributes. You can do this by adding classes to the DOM nodes. You can also use DOM attributes, like so:
+```
+<div class="row" data-x="0" data-y="0"/>
+<div class="row" data-x="1" data-y="0"/>
+<div class="row" data-x="2" data-y="0"/>
+...
+```
+Alternatively, you can use React components:
+```
+<Square x={0} y={0}/>
+<Square x={1} y={0}/>
+<Square x={2} y={0}/>
+...
+```
+Lastly, you can also create the board dynamically using code.
+
+### Testing ###
+For testing, you'll need a few npm packages too: __`chai`__ and __`mocha`__.
+
+To write a test, you'll need to:
+  * come up with a scenario that's relevant to your goal (ex: verify my function will detect a win when it finds four horizontal pieces)
+  * generate some data that represents that scenario
+  * feed that data as an input to the function under test
+  * compare the function's return value with your expected return value
+
+Repeat this recipe for each scenario you think of.
+
+It's a best practice to have multiple versions of each scenario. For example: finding four diagonal pieces in a row at the top corner, and finding four diagonal pieces in a row somewhere in the middle of a board. This allows you to validate your function with different circumstances. You'll often find bugs hidden in strange places, where you least expect them. The more versions of a scenario you have, the more confidence you have that your function works as expected.
+
+It is a best practice to put your javascript files that contain tests into a __`tests`__ folder. You'll also need an HTML file to launch your tests. Here is a [simple tutorial](https://robdodson.me/posts/testing-backbone-boilerplate-with-mocha-and-chai/) to get you started.
