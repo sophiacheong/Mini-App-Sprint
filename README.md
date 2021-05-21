@@ -20,25 +20,25 @@ Before you begin a challenge, it is recommended that you **read the hint titles*
 
 A hint that addresses a specific issue is only included in the challenge where it first becomes relevant. If you don't find a hint that meets your needs in the current challenge's hint file, be sure to also check prior hints.
 
-## Challenge 1: Tic Tac Toe ##
+### Challenge 1: Tic Tac Toe ###
 [Build a Tic Tac Toe game](#challenge-tic-tac-toe)
 
-## Challenge 2: CSV Report Generator ## 
+## Challenge 2: CSV Report Generator ###
 [Build a CSV Report Generator](#challenge-csv-report-generator)
 
-## Challenge 3: Multistep Checkout Experience ## 
+### Challenge 3: Multistep Checkout Experience ###
 [Build a Multistep Checkout Experience](#challenge-multistep-checkout-experience)
 
-## Challenge 4: Connect Four ## 
+### Challenge 4: Connect Four ###
 [Build a Connect Four game](#challenge-connect-four)
 
-# BONUS Challenges #
+## BONUS Challenges ##
 The challenges below are offered as bonus to really stretch the limits of your skills and thinking. Each challenge is progressively more difficult and offers fewer hints and guidelines.
 
-## BONUS Challenge: Checkers ##
+### BONUS Challenge: Checkers ###
 [Build a Checkers game](#challenge-checkers)
 
-## BONUS Challenge: Battleship ##
+### BONUS Challenge: Battleship ###
 [Build a Battleship game](#challenge-battleship)
 
 # Challenge: Tic Tac Toe #
