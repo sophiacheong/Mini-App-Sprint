@@ -57,7 +57,7 @@ For basic requirements, no CSS styling is necessary. Use the browser's default s
 MVC frameworks help you separate and manage the concerns associated with user input, rendering to the screen and managing app state. Even though you are not using any frameworks, this concept can be applied even while writing plain-vanilla javascript code. Be sure to build your app so that each category of behavior is grouped in one area of your __`app.js`__ file. Use coding best practices to ensure a clear separation of concerns with well-defined interfaces.
 
 If you get stuck or are not sure how to proceed:
-   * you may look at the [hints](#Hints: Tic Tac Toe) file for this challenge to help you along.
+   * you may look at the [hints](#hints-tic-tac-toe) file for this challenge to help you along.
    * you may substitute the use of native DOM methods with jQuery.
 
 # Hints: Tic Tac Toe #
