@@ -1,10 +1,44 @@
-<html>
-  <head>
-    <title>Tic Tac Toe</title>
-    <link rel="stylehseet" href="styles.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="text/javacsript" src="bundle.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tic Tac Toe</title>
+  <style>
+
+    body {
+      width: 550px;
+      margin: auto;
+    }
+
+    .Square {
+      height: 80px;
+      width: 80px;
+      font-size: 45pt;
+      text-align: center;
+    }
+  </style>
+</head>
+<body onload="startGame()">
+  <h1>Tic-Tac-Toe</h1>
+  <table border = "1">
+    <tr>
+      <td class="Square" onClick="nextMove(this)"></td>
+      <td class="Square" onClick="nextMove(this)"></td>
+      <td class="Square" onClick="nextMove(this)"></td>
+    </tr>
+    <tr>
+      <td class="Square" onClick="nextMove(this)"></td>
+      <td class="Square" onClick="nextMove(this)"></td>
+      <td class="Square" onClick="nextMove(this)"></td>
+    </tr>
+    <tr>
+      <td class="Square" onClick="nextMove(this)"></td>
+      <td class="Square" onClick="nextMove(this)"></td>
+      <td class="Square" onClick="nextMove(this)"></td>
+    </tr>
+  </table>
+  <script src="app.js"></script>
+</body>
 </html>
