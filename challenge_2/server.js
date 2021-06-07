@@ -17,13 +17,7 @@ app.use(express.static(PATH.join(__dirname, './client')))
 // app.use('/', router);
 
 app.post('/upload_json', (req, res) => {
-  (err, results) => {
-    if (err) {
-      res.sendStatus(404).send(err);
-    } else {
-      res.sendStatus(200).send('Success!');
-    }
-  }
+  res.status(200).send('Success!')
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
