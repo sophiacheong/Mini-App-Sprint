@@ -18,8 +18,47 @@ app.use(express.static(PATH.join(__dirname, './client')))
 // app.use('/', router);
 
 app.post('/upload_json', (req, res) => {
-  res.status(200).send('Success!')
-})
+  fs.open(PATH.join(__dirname, 'data.csv'), 'w', () => {
+    let body = req.body.text;
+    if (body[body.length - 1] === ';') {
+      body = body.slice(0, -1)
+    };
+    let data = JSON.parse(body);
+    let sep = ',';
+    let header = '';
+    for (key in data) {
+      if (key !== 'children') {
+        header = header + key + sep;
+      };
+    };
+    header = header.slice(0, -1) + '\n';
+
+    fs.appendFile('data.csv', header, () => {
+      let rows = '';
+      let recurse = function(data) {
+        if (!data.children) {
+          return;
+        }
+
+        let row = '';
+        for (key in data) {
+          if (key !== 'children') {
+            row = row + data[key] + sep;
+          }
+        }
+        row = row.slice(0, -1) + '\n';
+        rows = row + row;
+        for (let i = 0; i < data.children.length; i++) {
+          recurse(data.children[i]);
+        }
+      }
+      recurse(data);
+      fs.appendFile('data.csv', rows, () => {
+        fs.readFile(PATH.join(__dirname, 'data.csv'), (err, data) => res.send(data));
+      });
+    });
+  });
+});
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 
