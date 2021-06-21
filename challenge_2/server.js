@@ -19,7 +19,8 @@ app.use(express.static(PATH.join(__dirname, './client')))
 
 app.post('/upload_json', (req, res) => {
   fs.open(PATH.join(__dirname, 'data.csv'), 'w', () => {
-    let body = req.body.text;
+    let body = req.body;
+    console.log(body)
     if (body[body.length - 1] === ';') {
       body = body.slice(0, -1)
     };
