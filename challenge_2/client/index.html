@@ -1,8 +1,14 @@
 <html>
   <head>CSV Report Generator</head>
   <body>
-    <form method="POST" action="/upload_json">
-      <textarea placeholder="Input data here"></textarea>
+    <form id="form" method="POST">
+      <textarea id="text" name="text" placeholder="Input data here"></textarea>
+      <br />
+      <span>upload your file:</span>
+      <br />
+      <input id="fileData" type="file" name="fileData" />
+      <br />
+      <!-- <input id="keyword" type="text" name="keyword" /> -->
       <button type="submit">Submit!</button>
     </form>
     <script src="app.js"></script>
