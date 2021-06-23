@@ -17,3 +17,29 @@ var display = function(data) {
   result.innerHTML = '';
   result.append(data);
 }
+
+var failMessage = function() {
+  var result = document.getElementById('result');
+  result.innerHTML = '';
+  result.append('failed to send file');
+}
+
+var sendFile = function(file) {
+  $.ajax({
+    url: '/convert',
+    type: 'POST',
+    contentType: 'text/plain',
+    data: file
+  })
+    .done((data) => {
+      console.log('send file success')
+      display(data);
+    })
+    .fail(() => {
+      console.log('fail to send file');
+      failMessage();
+    })
+}
+
+var form = document.getElementById('form');
+form.addEventListener('submit', getFileData);
