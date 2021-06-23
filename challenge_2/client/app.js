@@ -12,3 +12,8 @@ var fileData = function(e) {
   sendFile(formData);
 }
 
+var display = function(data) {
+  var result = document.getElementById('result');
+  result.innerHTML = '';
+  result.append(data);
+}
