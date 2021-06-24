@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+const _ = require('underscore');
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -17,7 +19,12 @@ app.use(bodyparser.json());
 app.use(express.static(PATH.join(__dirname, './client')))
 // app.use('/', router);
 
-app.post('/upload_json', (req, res) => {
+const upload = multer();
+const lastData = '';
+const uid = 0;
+const fileHeader = [];
+
+app.post('/convert', upload.single('fileData'), (req, res) => {
   fs.open(PATH.join(__dirname, 'data.csv'), 'w', () => {
     let body = req.body;
     console.log(body)
