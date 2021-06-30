@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "babel --presets @babel/react --watch ./client/index.jsx --out-dir ./public",
+    "build": "babel --presets @babel/react --watch ./client --out-dir ./public",
     "start": "nodemon server.js"
   },
   "keywords": [],
