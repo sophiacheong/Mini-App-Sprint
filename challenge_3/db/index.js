@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+
 const db = mongoose.connection;
 
-mongoose.connect('mongodb://localhost/fetcher', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/fetcher', { useNewUrlParser: true, useUnifiedTopology: true });
 
-let repo = mongoose.Schema({
-  id: Number,
+db.once('open', () => { console.log('db connected'); });
+
+const repo = mongoose.Schema({
   name: String,
   email: String,
   password: String,
@@ -13,5 +15,7 @@ let repo = mongoose.Schema({
   card_number: Number,
   expiration_date: Number,
   CVV: Number,
-  zip_code: Number
-})
+  zip_code: Number,
+});
+
+module.exports = { db, repo };
