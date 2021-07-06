@@ -1,17 +1,12 @@
 class F2 extends React.Component {
   constructor(props) {
     super(props);
-    this.changePage = this.changePage.bind(this);
-  }
-
-  changePage() {
-
   }
 
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this.props.changePage}>
           <label htmlFor="line-one">Line 1:</label>
           <input type="text" id="line-one" name="line-one" />
           <label htmlFor="line-two">Line 2:</label>

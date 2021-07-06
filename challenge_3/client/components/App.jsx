@@ -2,6 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import F1 from './F1.js';
 import F2 from './F2.js';
+import F3 from './F3.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class App extends React.Component {
     return (
       <div>
         {this.state.pg === 0 ? <F1 changePage={this.changePage} /> : null}
-        {this.state.pg === 1 ? <F2 pg={this.state.pg} /> : null}
+        {this.state.pg === 1 ? <F2 pg={this.state.pg} changePage={this.changePage} /> : null}
+        {this.state.pg === 2 ? <F3 /> : null}
       </div>
     );
   }
