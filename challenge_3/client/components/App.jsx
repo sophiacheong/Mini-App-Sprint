@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable max-len */
@@ -23,15 +24,29 @@ class App extends React.Component {
       expiration_date: 0,
       CVV: 0,
       zip_code: 0,
+      line_one: '',
+      line_two: '',
+      city: '',
+      zip: 0,
+      state: '',
     };
     this.changePage = this.changePage.bind(this);
     this.updateForm = this.updateForm.bind(this);
+    this.submitAddress = this.submitAddress.bind(this);
   }
 
   updateForm(e) {
     this.setState({
       [e.target.name]: e.target.value,
-    }, () => console.log(this.state));
+    });
+  }
+
+  submitAddress(e) {
+    e.preventDefault();
+    this.setState({
+      address: `${this.state.line_one} ${this.state.line_two}, ${this.state.city}, ${this.state.state} ${this.state.zip}`,
+      pg: this.state.pg + 1,
+    });
   }
 
   changePage(e) {
@@ -45,7 +60,7 @@ class App extends React.Component {
     return (
       <div>
         {this.state.pg === 0 ? <F1 changePage={this.changePage} updateForm={this.updateForm} /> : null}
-        {this.state.pg === 1 ? <F2 changePage={this.changePage} updateForm={this.updateForm} /> : null}
+        {this.state.pg === 1 ? <F2 updateForm={this.updateForm} submitAddress={this.submitAddress} /> : null}
         {this.state.pg === 2 ? <F3 updateForm={this.updateForm} /> : null}
       </div>
     );
