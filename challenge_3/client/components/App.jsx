@@ -9,11 +9,28 @@ class App extends React.Component {
     super(props);
     this.state = {
       pg: 0,
+      name: '',
+      password: '',
+      email: '',
+      address: '',
+      phone_number: 0,
+      card_number: 0,
+      expiration_date: 0,
+      CVV: 0,
+      zip_code: 0,
     };
     this.changePage = this.changePage.bind(this);
+    this.updateForm = this.updateForm.bind(this);
   }
 
-  changePage() {
+  updateForm(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    }, () => console.log(this.state))
+  }
+
+  changePage(e) {
+    e.preventDefault();
     this.setState({
       pg: this.state.pg + 1,
     });
@@ -22,7 +39,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.pg === 0 ? <F1 changePage={this.changePage} /> : null}
+        {this.state.pg === 0 ? <F1 changePage={this.changePage} updateForm={this.updateForm} /> : null}
         {this.state.pg === 1 ? <F2 pg={this.state.pg} changePage={this.changePage} /> : null}
         {this.state.pg === 2 ? <F3 /> : null}
       </div>
