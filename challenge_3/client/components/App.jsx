@@ -1,3 +1,8 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable max-len */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/react-in-jsx-scope */
 import F1 from './F1.js';
@@ -26,7 +31,7 @@ class App extends React.Component {
   updateForm(e) {
     this.setState({
       [e.target.name]: e.target.value,
-    }, () => console.log(this.state))
+    });
   }
 
   changePage(e) {
@@ -40,8 +45,8 @@ class App extends React.Component {
     return (
       <div>
         {this.state.pg === 0 ? <F1 changePage={this.changePage} updateForm={this.updateForm} /> : null}
-        {this.state.pg === 1 ? <F2 pg={this.state.pg} changePage={this.changePage} /> : null}
-        {this.state.pg === 2 ? <F3 /> : null}
+        {this.state.pg === 1 ? <F2 changePage={this.changePage} updateForm={this.updateForm} /> : null}
+        {this.state.pg === 2 ? <F3 updateForm={this.updateForm} /> : null}
       </div>
     );
   }
