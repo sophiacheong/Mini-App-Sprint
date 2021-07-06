@@ -51,9 +51,13 @@ class App extends React.Component {
 
   changePage(e) {
     e.preventDefault();
-    this.setState({
-      pg: this.state.pg + 1,
-    });
+    if (e.target.name === 'card_number' || e.target.name === 'expiration_date' || e.target.name === 'CVV' || e.target.name === 'zip_code' ) {
+      this.setState({ [e.target.name]: Number(e.target.value) });
+    } else {
+      this.setState({
+        pg: this.state.pg + 1,
+      });
+    }
   }
 
   render() {
