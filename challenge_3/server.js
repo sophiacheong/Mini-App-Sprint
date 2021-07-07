@@ -35,7 +35,7 @@ app.post('/f1', (req, res) => {
     zip_code,
   });
 
-  formsDB.insert(newRepo, (err, results) => {
+  formsDB.insertOne(newRepo, (err, results) => {
     if (err) res.status(404).send(err);
     else res.status(200).send('Sucess!');
   });
