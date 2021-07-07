@@ -13,9 +13,11 @@ const repo = mongoose.Schema({
   address: String,
   phone_number: Number,
   card_number: Number,
-  expiration_date: Number,
+  expiration_date: String,
   CVV: Number,
   zip_code: Number,
 });
 
-module.exports = { db, repo };
+const Form = mongoose.model('Form', repo);
+
+module.exports = { db, Form };

@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { db, repo } = require('./db/index');
+const { db, Form } = require('./db/index');
 
 const PORT = 3000;
 
@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
 app.post('/f1', (req, res) => {
-  const Form = mongoose.model('Form', repo);
+  const formsDB = db.collection('forms');
   const {
     name, email, password, address, phone_number, card_number, expiration_date, CVV, zip_code,
   } = req.body;
@@ -35,7 +35,7 @@ app.post('/f1', (req, res) => {
     zip_code,
   });
 
-  db.Form.insert(newRepo, (err, results) => {
+  formsDB.insert(newRepo, (err, results) => {
     if (err) res.status(404).send(err);
     else res.status(200).send('Sucess!');
   });
