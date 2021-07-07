@@ -6,7 +6,7 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/react-in-jsx-scope */
-// import axios from 'axios';
+import axios from 'axios';
 import F1 from './F1.js';
 import F2 from './F2.js';
 import F3 from './F3.js';
