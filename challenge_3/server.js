@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -18,18 +19,20 @@ app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
 app.post('/f1', (req, res) => {
   const Form = mongoose.model('Form', repo);
-  const { name, email, password } = req.body;
+  const {
+    name, email, password, address, phone_number, card_number, expiration_date, CVV, zip_code,
+  } = req.body;
 
   const newRepo = new Form({
     name,
     email,
     password,
-    address: '',
-    phone_number: 0,
-    card_number: 0,
-    expiration_date: 0,
-    CVV: 0,
-    zip_code: 0,
+    address,
+    phone_number,
+    card_number,
+    expiration_date,
+    CVV,
+    zip_code,
   });
 
   db.Form.insert(newRepo, (err, results) => {

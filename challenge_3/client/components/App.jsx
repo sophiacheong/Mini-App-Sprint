@@ -6,6 +6,7 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/react-in-jsx-scope */
+// import axios from 'axios';
 import F1 from './F1.js';
 import F2 from './F2.js';
 import F3 from './F3.js';
@@ -33,6 +34,7 @@ class App extends React.Component {
     this.changePage = this.changePage.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.submitAddress = this.submitAddress.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   updateForm(e) {
@@ -51,7 +53,7 @@ class App extends React.Component {
 
   changePage(e) {
     e.preventDefault();
-    if (e.target.name === 'card_number' || e.target.name === 'expiration_date' || e.target.name === 'CVV' || e.target.name === 'zip_code' ) {
+    if (e.target.name === 'card_number' || e.target.name === 'expiration_date' || e.target.name === 'CVV' || e.target.name === 'zip_code') {
       this.setState({ [e.target.name]: Number(e.target.value) });
     } else {
       this.setState({
@@ -60,12 +62,22 @@ class App extends React.Component {
     }
   }
 
+  submitForm(e) {
+    e.preventDefault();
+    axios.post('http://localhost:3000/f1', this.state)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
+    this.setState({
+      pg: 0,
+    });
+  }
+
   render() {
     return (
       <div>
         {this.state.pg === 0 ? <F1 changePage={this.changePage} updateForm={this.updateForm} /> : null}
         {this.state.pg === 1 ? <F2 updateForm={this.updateForm} submitAddress={this.submitAddress} /> : null}
-        {this.state.pg === 2 ? <F3 updateForm={this.updateForm} /> : null}
+        {this.state.pg === 2 ? <F3 updateForm={this.updateForm} submitForm={this.submitForm} /> : null}
       </div>
     );
   }

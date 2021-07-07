@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/react-in-jsx-scope */
-const F3 = ({ updateForm }) => (
+const F3 = ({ updateForm, submitForm }) => (
   <div>
-    <form>
+    <form onSubmit={(e) => submitForm(e)}>
       <label htmlFor="card_number">Card #:</label>
       <input type="text" id="card_number" name="card_number" onChange={(e) => updateForm(e)} />
       <label htmlFor="expiration_date">Expiration date:</label>

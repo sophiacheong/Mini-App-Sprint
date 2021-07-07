@@ -4,9 +4,9 @@
 const F1 = ({ changePage, updateForm }) => (
   <div>
     <form onSubmit={(e) => changePage(e)}>
-      <input type="text" name="name" placeholder="Name..." onChange={(e) => updateForm(e)} />
-      <input type="text" id="email" name="email" placeholder="Email..." onChange={(e) => updateForm(e)} />
-      <input type="text" id="password" name="password" placeholder="Password..." onChange={(e) => updateForm(e)} />
+      <input type="text" name="name" placeholder="Name..." onChange={(e) => updateForm(e)} required />
+      <input type="text" id="password" name="password" placeholder="Password..." onChange={(e) => updateForm(e)} required />
+      <input type="email" id="email" name="email" placeholder="Email..." onChange={(e) => updateForm(e)} required />
       <button type="submit">Next</button>
     </form>
   </div>
